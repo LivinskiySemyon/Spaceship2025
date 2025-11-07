@@ -1,7 +1,7 @@
 using System.Runtime;
-using Spacebattle2025.Domain.Interfaces;
+using Spaceship2025.Domain.Interfaces;
 
-namespace Spacebattle2025.Domain.Movement;
+namespace Spaceship2025.Domain.Movement;
 
 public class RotateCommand : ICommand
 {

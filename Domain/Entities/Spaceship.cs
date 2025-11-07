@@ -1,6 +1,6 @@
-using SpaceBattle.Domain.Interfaces;
+using Spaceship2025.Domain.Interfaces;
 
-namespace SpaceBattle.Domain.Entities
+namespace Spaceship2025.Domain.Entities
 {
     public class SpaceShip : IMovable, IRotatable
     {

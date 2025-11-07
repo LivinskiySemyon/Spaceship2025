@@ -1,4 +1,4 @@
-namespace SpaceBattle2025.Domain.Interfaces
+namespace Spaceship2025.Domain.Interfaces
 {
     public interface IVelocityChangeable
     {

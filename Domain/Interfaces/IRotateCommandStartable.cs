@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SpaceBattle.Domain.Interfaces
+namespace Spaceship2025.Domain.Interfaces
 {
     public interface IRotateCommandStartable
     {

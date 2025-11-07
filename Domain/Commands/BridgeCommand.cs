@@ -1,6 +1,6 @@
-using SpaceBattle.Domain.Interfaces;
+using Spaceship2025.Domain.Interfaces;
 
-namespace SpaceBattle.Domain.Commands
+namespace Spaceship2025.Domain.Commands
 {
     public class BridgeCommand : ICommand
     {
