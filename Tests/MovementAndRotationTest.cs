@@ -8,7 +8,7 @@ namespace SpaceBattle.Tests
 {
     public class MovementAndRotationTests
     {
-        [Fact]
+        [Test]
         public void MoveCommand_ChangesPositionCorrectly()
         {
             IMovable ship = new SpaceShip((12, 5), (-7, 3), 0, 0);
@@ -19,7 +19,7 @@ namespace SpaceBattle.Tests
             Assert.AreEqual((5, 8), ship.Position);
         }
 
-        [Fact]
+        [Test]
         public void MoveCommand_ThrowsIfPositionIsUnavailable()
         {
             var broken = new MockBrokenMovable_NoPosition();
@@ -27,7 +27,7 @@ namespace SpaceBattle.Tests
             Assert.Throws<InvalidOperationException>(() => cmd.Execute());
         }
 
-        [Fact]
+        [Test]
         public void MoveCommand_ThrowsIfVelocityIsUnavailable()
         {
             var broken = new MockBrokenMovable_NoVelocity();
@@ -35,7 +35,7 @@ namespace SpaceBattle.Tests
             Assert.Throws<InvalidOperationException>(() => cmd.Execute());
         }
 
-        [Fact]
+        [Test]
         public void RotateCommand_ChangesAngleCorrectly()
         {
             IRotatable ship = new SpaceShip((0, 0), (0, 0), 45, 90);
