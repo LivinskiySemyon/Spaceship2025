@@ -4,6 +4,4 @@ public interface IMovable
 {
     (int X, int Y) Position { get; set; }
     (int dX, int dY) Velocity { get;}
-
-    void Move();
 }
