@@ -1,19 +1,19 @@
 using NUnit.Framework;
-using SpaceBattle.Domain.Entities;
-using SpaceBattle.Domain.Movement;
-using SpaceBattle.Domain.Rotation;
-using SpaceBattle.Domain.Interfaces;
+using Spaceship2025.Domain.Entities;
+using Spaceship2025.Domain.Commands;
+using Spaceship2025.Domain.Interfaces;
 
-namespace SpaceBattle.Tests
+namespace Spaceship2025.Domain.Tests
 {
     public class MovementAndRotationTests
     {
         [Test]
         public void MoveCommand_ChangesPositionCorrectly()
         {
-            IMovable ship = new SpaceShip((12, 5), (-7, 3), 0, 0);
-            var move = new MoveCommand(ship);
+            var ship = new Spaceship((12, 5));
+            ship.SetVelocity((-7, 3));
 
+            var move = new MoveCommand(ship);
             move.Execute();
 
             Assert.AreEqual((5, 8), ship.Position);
@@ -38,9 +38,10 @@ namespace SpaceBattle.Tests
         [Test]
         public void RotateCommand_ChangesAngleCorrectly()
         {
-            IRotatable ship = new SpaceShip((0, 0), (0, 0), 45, 90);
-            var rotate = new RotateCommand(ship);
+            var ship = new Spaceship((0, 0), 45);
+            ship.SetAngularVelocity(90);
 
+            var rotate = new RotateCommand(ship);
             rotate.Execute();
 
             Assert.AreEqual(135, ship.Angle);
@@ -49,15 +50,17 @@ namespace SpaceBattle.Tests
 
     class MockBrokenMovable_NoPosition : IMovable
     {
-        public (int X, int Y) Position { get => throw new NullReferenceException(); set => throw new NullReferenceException(); }
-        public (int dX, int dY) Velocity => (1, 1);
-        public void Move() => throw new NotImplementedException();
-    }
+        public (double X, double Y) Position
+        {
+            get => throw new NullReferenceException();
+            set => throw new NullReferenceException();
+        }
 
+        public (double dX, double dY) Velocity => (1, 1);
+    }
     class MockBrokenMovable_NoVelocity : IMovable
     {
-        public (int X, int Y) Position { get; set; } = (0, 0);
-        public (int dX, int dY) Velocity => throw new NullReferenceException();
-        public void Move() => throw new NotImplementedException();
+        public (double X, double Y) Position { get; set; } = (0, 0);
+        public (double dX, double dY) Velocity => throw new NullReferenceException();
     }
 }

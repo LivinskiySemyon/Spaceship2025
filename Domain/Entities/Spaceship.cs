@@ -2,20 +2,28 @@ using Spaceship2025.Domain.Interfaces;
 
 namespace Spaceship2025.Domain.Entities
 {
-    public class SpaceShip : IMovable, IRotatable, IVelocityChangeable, IAngularVelocityChangeable
+    public class Spaceship : IMovable, IRotatable
     {
-        public (int X, int Y) Position { get; set; }
-        public (int dX, int dY) Velocity { get; private set; }
-        (int dX, int dY) IMovable.Velocity => Velocity ?? throw new InvalidOperationException("Скорость не задана.");
+        public (double X, double Y) Position { get; set; }
+        public (double dX, double dY) Velocity { get; private set; }
 
         public double Angle { get; set; }
         public double AngularVelocity { get; private set; }
-        double IRotatable.AngularVelocity => AngularVelocity ?? throw new InvalidOperationException("Угловая скорость не задана.");
 
-        public SpaceShip((int X, int Y) position, double angle = 0)
+        public Spaceship((double X, double Y) position, double angle = 0)
         {
             Position = position;
-            Angle = angle;
+            Angle = (angle % 360 + 360) % 360;
+        }
+
+        public void SetVelocity((double dX, double dY) velocity)
+        {
+            Velocity = velocity;
+        }
+
+        public void SetAngularVelocity(double angularVelocity)
+        {
+            AngularVelocity = angularVelocity;
         }
     }
 }
